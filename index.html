@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>when</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+<body>
+
+<header class="top-nav">
+  <span class="logo">when</span>
+  <nav>
+    <button class="active">Home</button>
+    <button>Explore</button>
+    <button>Profile</button>
+  </nav>
+</header>
+
+<div class="mobile-top-bar">
+  <span class="mobile-title">when</span>
+  <span class="mobile-time" id="mobileTime"></span>
+</div>
+
+<nav class="mobile-nav">
+  <button data-view="calendar" class="active">
+    <i data-lucide="calendar"></i>
+    <span>Calendar</span>
+  </button>
+
+  <button data-view="search">
+    <i data-lucide="search"></i>
+    <span>Search</span>
+  </button>
+
+  <button data-view="history">
+    <i data-lucide="clock"></i>
+    <span>History</span>
+  </button>
+</nav>
+
+
+
+<main class="layout">
+
+  <!-- LEFT: CALENDAR -->
+<section class="calendar">
+
+  
+<div class="calendar-header">
+  <button class="cal-nav" id="prevMonth">‹</i></button>
+  <span class="month" id="monthLabel">June</span>
+  <span class="year" id="yearLabel">2026</span>
+  <button class="cal-nav" id="nextMonth">›</i></button>
+</div>
+
+
+
+
+<div class="weekdays">
+  <span>Sun</span><span>Mon</span><span>Tue</span>
+  <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+</div>
+
+<!-- MONTH PICKER -->
+<div class="picker month-picker hidden" id="monthPicker">
+  <div class="picker-grid">
+    <span data-month="0">Jan</span><span data-month="1">Feb</span><span data-month="2">Mar</span>
+    <span data-month="3">Apr</span><span data-month="4">May</span><span data-month="5">Jun</span>
+    <span data-month="6">Jul</span><span data-month="7">Aug</span><span data-month="8">Sep</span>
+    <span data-month="9">Oct</span><span data-month="10">Nov</span><span data-month="11">Dec</span>
+  </div>
+</div>
+
+<!-- YEAR PICKER -->
+<div class="picker year-picker hidden" id="yearPicker">
+  <div class="year-header">
+    <button id="prevYear">‹</button>
+    <span id="yearRange"></span>
+    <button id="nextYear">›</button>
+  </div>
+
+  <div class="picker-grid" id="yearGrid"></div>
+
+  <button class="today-btn" id="jumpToday">Today</button>
+</div>
+
+
+
+  <div class="calendar-grid" id="calendarGrid"></div>
+
+  <div class="event-list" id="eventList"></div>
+</section>
+
+
+
+  <!-- CENTER: SEARCH -->
+  <section class="search">
+  <div class="search-input-wrap">
+  <button class="search-icon-btn" id="searchIcon">
+    <i data-lucide="search"></i>
+  </button>
+
+  <input
+    id="searchInput"
+    placeholder="Search something you want to follow…"
+  />
+</div>
+
+<div class="search-summary hidden" id="summary">
+  <div class="summary-card">
+
+    <h3 id="topicTitle"></h3>
+    <p id="topicSummary"></p>
+
+    <div class="dates-section">
+      <div class="dates-header">
+        <span>Important dates</span>
+        <button id="toggleAllDates" class="link-btn">
+          Select all
+        </button>
+      </div>
+
+      <div class="dates-list" id="topicDates">
+        <!-- dates injected by JS -->
+      </div>
+    </div>
+
+    <button class="add-calendar-btn" id="addBtn">
+      Add selected dates to calendar
+    </button>
+
+  </div>
+</div>
+
+
+<div class="category-row">
+  <button data-topic="tech">
+    <i data-lucide="cpu"></i>
+    <span>Technology</span>
+  </button>
+
+  <button data-topic="education">
+    <i data-lucide="graduation-cap"></i>
+    <span>Education</span>
+  </button>
+
+  <button data-topic="government">
+    <i data-lucide="landmark"></i>
+    <span>Government</span>
+  </button>
+
+  <button data-topic="science">
+    <i data-lucide="rocket"></i>
+    <span>Science</span>
+  </button>
+
+  <button data-topic="sports">
+    <i data-lucide="trophy"></i>
+    <span>Sports</span>
+  </button>
+
+  <button data-topic="global">
+    <i data-lucide="globe"></i>
+    <span>Global</span>
+  </button>
+</div>
+
+
+
+
+
+
+
+    <div class="trending">
+      <h4>Trending</h4>
+      <div class="chips">
+        <span>WWDC</span>
+        <span>TCS NQT</span>
+        <span>ISRO Launch</span>
+        <span>Olympics 2028</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: HISTORY -->
+  <section class="history">
+    <h3><i data-lucide="clipboard-list"></i> History </h3>
+    <ul id="historyList">
+      <li class="history-card">
+  <div class="history-header">
+    <span class="history-title">iPhone 17 Launch</span>
+
+    <label class="switch">
+      <input type="checkbox" checked />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="history-dates">
+    <div class="history-date">
+      <span>Launch</span>
+      <small>Sep 8, 2026</small>
+    </div>
+    <div class="history-date">
+      <span>Preorder</span>
+      <small>Sep 15, 2026</small>
+    </div>
+  </div>
+
+  <div class="history-footer">
+    <span class="history-updated">Updated 5 days ago</span>
+
+    <div class="history-actions">
+      <button title="Refresh">⟳</button>
+      <button title="Delete">🗑</button>
+    </div>
+  </div>
+</li>
+
+    </ul>
+  </section>
+
+</main>
+<script>
+  lucide.createIcons();
+</script>
+<script src="script.js"></script>
+</body>
+</html>
