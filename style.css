@@ -3,6 +3,11 @@
   font-family: Inter, system-ui, sans-serif;
 }
 
+.mobile-nav {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+
 body {
   margin: 0;
   background: #ffffff;
