@@ -584,3 +584,37 @@ searchInput.addEventListener("focus", () => {
 });
 
 renderHistory();
+
+
+
+const historyDrawer = document.querySelector(".history");
+const historyToggle = document.querySelector(".history-toggle");
+const backdrop = document.querySelector(".history-backdrop");
+
+// OPEN / CLOSE via hamburger
+historyToggle.addEventListener("click", () => {
+  const isOpen = historyDrawer.classList.contains("open");
+
+  historyDrawer.classList.toggle("open", !isOpen);
+  backdrop.classList.toggle("hidden", isOpen);
+});
+
+// CLOSE on backdrop click
+backdrop.addEventListener("click", closeHistory);
+
+// CLOSE on ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeHistory();
+});
+
+// CLOSE helper
+function closeHistory() {
+  historyDrawer.classList.remove("open");
+  backdrop.classList.add("hidden");
+}
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth <= 768) {
+    closeHistory();
+  }
+});

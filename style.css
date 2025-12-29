@@ -43,10 +43,14 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: 320px 1fr 360px;
+  grid-template-columns:
+    320px                 /* Calendar – fixed */
+    minmax(420px, 1fr)    /* Search – min size, expandable */
+    360px;                /* History – fixed */
   gap: 24px;
   padding: 24px;
 }
+
 
 section {
   background: white;
@@ -489,6 +493,13 @@ section {
   color: #6b7280;
 }
 
+.history-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 
 /* =========================
    MOBILE LAYOUT
@@ -498,6 +509,81 @@ section {
 .mobile-nav {
   display: none;
 }
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  .layout {
+    grid-template-columns:
+      320px
+      minmax(420px, 1fr);
+  }
+
+  .history {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 90%;
+    height: 100vh;
+    background: white;
+    z-index: 100;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.12);
+
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.25s ease;
+  }
+
+  .history.open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .history-toggle {
+    display: flex;
+  }
+}
+
+
+.history-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 90;
+}
+
+.history-backdrop.hidden {
+  display: none;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.primary-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.history-toggle {
+  display: none; /* hidden on full desktop */
+}
+
+/* Tablet / reduced desktop */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .primary-nav {
+    display: none; /* hide Home / Explore / Profile */
+  }
+
+  .history-toggle {
+    display: inline-flex; /* show hamburger */
+    align-items: center;
+  }
+}
+
 
 
 @media (max-width: 768px) {
@@ -724,6 +810,10 @@ section {
 
 .add-calendar-btn:hover {
   background: #f9fafb;
+}
+
+.history {
+  background: white;
 }
 
 

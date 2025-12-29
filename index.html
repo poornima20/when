@@ -13,11 +13,18 @@
 
 <header class="top-nav">
   <span class="logo">when</span>
-  <nav>
+  <nav class="top-actions">
+  <div class="primary-nav">
     <button class="active">Home</button>
     <button>Explore</button>
     <button>Profile</button>
-  </nav>
+  </div>
+
+  <button class="history-toggle" aria-label="History">
+    <i data-lucide="menu"></i>
+  </button>
+</nav>
+
 </header>
 
 <div class="mobile-top-bar">
@@ -225,6 +232,9 @@
   </section>
 
 </main>
+
+<div class="history-backdrop hidden"></div>
+
 <script>
   lucide.createIcons();
 </script>
